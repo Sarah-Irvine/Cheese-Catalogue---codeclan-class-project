@@ -8,5 +8,11 @@
 </head>
 <body>
     <h1>{{ cheese.name }}</h1>
+    <h2>Customers who bought this:</h2>
+    <ul>
+        {% for customer in cheese.orders.all %}
+        <li><a href="{% url 'customer' customer.id %}">{{ customer.name }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
