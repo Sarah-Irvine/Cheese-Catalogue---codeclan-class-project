@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fromage</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header" >
+        <div class="container">
+            <h1 class="header__title">Fromage</h1>
+            <nav class="nav"></nav>
+        </div>
+    </header>
+ 
+    <section class="container">
+        <form action="{% url 'home' %}" method="get">
+            <input type="text" name="query" placeholder="Name" />
+            <select name="strength" id="">
+                <option disabled selected>Select Strength</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <select name="country" id="">
+                <option disabled selected>Select Country</option>
+                <option value="France">France</option>
+                <option value="Spain">Spain</option>
+            </select>
+            <button type="submit">Search cheeses</button>
+        </form>
+        <h2>My cheeses:</h2>
+        <ul class="cheeses">
+            {% for cheese in cheeses %}
+            <li class="cheese-item">
+                <a href="{% url 'cheese_details' cheese.id %}" class="cheese-item__link">
+                <img src="https://images.pexels.com/photos/4109943/pexels-photo-4109943.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="cheese-item__image">
+            <div class="cheese-item__content">
+                <h3 class="cheese-item__name">{{ cheese.name }}</h3>
+            <h4 class="cheese-item__description">Strength: {{ cheese.strength }} | {{ cheese.country }}</h4>
+                </div>
+            </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</body>
+</html>
