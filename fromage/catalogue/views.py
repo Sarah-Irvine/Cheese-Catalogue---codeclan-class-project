@@ -9,7 +9,9 @@ def home(request):
     filter_map = {
         "query": "name__icontains",
         "strength": "strength",
-        "country": "country__iexact"
+        "colour": "colour__icontains",
+        "country": "country__iexact",
+        "age": "age__iexact"
     }
 
     # one way to search:
@@ -28,9 +30,11 @@ def home(request):
 
     cheeses = Cheese.objects.filter(**filters)
 
+    countries = Cheese.objects.values_list("country", flat=True).distinct()
 
     context = {
-        "cheeses": cheeses
+        "cheeses": cheeses,
+        "countries": countries
     }
 
     #"reviews": Review.objects.filter(recommend=True) 
@@ -61,4 +65,16 @@ def add_review(request, id):
         rating = request.POST.get("rating")
         review = Review(reviewer=customer, cheese=cheese_obj, rating=int(rating), recommend=recommend)
         review.save()
+        return redirect(request.POST.get("redirect_url"))
+
+def add_cheese(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        strength = request.POST.get("strength")
+        colour = request.POST.get("colour")
+        country = request.POST.get("country")
+        age = request.POST.get("age")
+
+        cheese = Cheese(name=name, strength=int(strength), colour=colour, country=country, age=int(age))
+        cheese.save()
         return redirect(request.POST.get("redirect_url"))

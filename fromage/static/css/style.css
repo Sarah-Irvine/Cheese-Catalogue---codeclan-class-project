@@ -5,15 +5,13 @@
 }
 
 body {
-    background-image: radial-gradient(#dbd146 20%, transparent 20%),
-      radial-gradient(#dbd146 30%, transparent 20%);
-  background-color: #ebeb6a;
-  background-position: 0 0, 50px 50px;
-  background-size: 100px 100px;
+  background-color: #1e1e1f;
+  color: #ece8d8;
 }
 
 .cheeses {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -22,20 +20,19 @@ body {
     width: 25%;
     list-style-type: none;
     background-color: #ece8d8;
-    color: #1e2138;
+    color: #1e1e1f;
     border-radius: 20px;
     transition: 0.2s background-color ease;
 }
 
 .cheese-item:hover {
-    background-color: #1e2138;
+    background-color: #1e1e1f;
     color: #ece8d8;
     cursor: pointer;
+    transform: scale(1.2);
+    transition: 0.2s transform ease;
 }
 
-.cheese-item:hover .cheese-item__image {
-    transform: scale(1.2);
-}
 
 /* img */
 .cheese-item__image{
@@ -57,13 +54,13 @@ body {
 }
 
 .cheese-item__link{
-    color: #1e2138;
+    color: #1e1e1f;
     text-decoration: none;
     transition: 0.2s color ease;
 }
 
 .cheese-item__link:hover {
-    background-color: #1e2138;
+    background-color: #1e1e1f;
     color: #ece8d8;
 }
 
@@ -71,3 +68,19 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+.cheese_controls{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    background-color: #ece8d8;
+    color: #1e1e1f;
+}
+
+
+/* OPTIONAL - fun cheese background:
+background-image: radial-gradient(#dbd146 20%, transparent 20%),
+      radial-gradient(#dbd146 30%, transparent 20%);
+background-color: #ebeb6a;
+background-position: 0 0, 50px 50px;
+background-size: 100px 100px; */
