@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Cheese, Review, Customer
+from .forms import CheeseForm
 
 # Create your views here.
 def home(request):
@@ -31,10 +32,19 @@ def home(request):
     cheeses = Cheese.objects.filter(**filters)
 
     countries = Cheese.objects.values_list("country", flat=True).distinct()
+    
+    if request.method == "POST":
+        form = CheeseForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            print(name)
+    else:
+        form = CheeseForm()
 
     context = {
         "cheeses": cheeses,
-        "countries": countries
+        "countries": countries,
+        "form": form
     }
 
     #"reviews": Review.objects.filter(recommend=True) 
